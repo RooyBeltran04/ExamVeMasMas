@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" th:href="@{/img/logo.png}">
+    <title>Domicilios CRUD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/home">
+                <img src="/img/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-top">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ciudadanos">Ciudadanos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Domicilios</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-center m-5">Domicilios</h1>
+        
+        <table class="table table-striped table-bordered">
+        	<thead class="table-dark">
+        		<tr>
+        			<th class="text-center">Id</th>
+					<th class="text-center">Id Ciudadano</th>
+        			<th class="text-center">Calle</th>
+        			<th class="text-center">Colonia</th>
+        			<th class="text-center">Municipio</th>
+        			<th class="text-center">Estado</th>
+        			<th class="text-center">Código Postal</th>
+        			<th class="text-center">Acciones</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr th:each="miDomicilio : ${domicilios}">
+        			<td th:text="${miDomicilio.id}">Id</td>
+					<td th:text="${miDomicilio.ciudadano.id}">Id Ciudadano</td>
+        			<td th:text="${miDomicilio.calle}">Calle</td>
+        			<td th:text="${miDomicilio.colonia}">Colonia</td>
+        			<td th:text="${miDomicilio.colonia}">Municipio</td>
+        			<td th:text="${miDomicilio.colonia}">Estado</td>
+        			<td th:text="${miDomicilio.colonia}">Código Postal</td>
+        			<td>
+        				<div class="text-center">
+        				 	<a th:href="@{update/domicilio/{id}(id=${miDomicilio.id})}" class="btn btn-warning">Editar</a>
+        				 	<a th:href="@{delete/domicilio/{id}(id=${miDomicilio.id})}" class="btn btn-danger">Eliminar</a>
+                    	</div>
+                    </td>
+        		</tr>
+        	</tbody>
+        </table>
+
+        <div class="mt-4">
+            <h2 class="text-center mt-4">Añadir Domicilio</h2>
+            <form th:action="@{/crearDomicilios}" th:object="${nuevoDomicilio}" method="POST">
+                <div class="mb-3">
+                    <label for="street" class="form-label">Id_Ciudadano:</label>
+                    <input type="text" th:field="*{ciudadano}" class="form-control" name="ciudadano" required>
+                </div>
+                <div class="mb-3">
+                    <label for="city" class="form-label">Calle:</label>
+                    <input type="text" th:field="*{calle}" class="form-control" name="calle" required>
+                </div>
+                <div class="mb-3">
+                    <label for="state" class="form-label">Colonia:</label>
+                    <input  type="text" th:field="*{colonia}" class="form-control" name="colonia" required>
+                </div>
+                <div class="mb-3">
+                    <label for="state" class="form-label">Municipio:</label>
+                    <input  type="text" th:field="*{municipio}" class="form-control" name="municipio" required>
+                </div>
+                <div class="mb-3">
+                    <label for="state" class="form-label">Estado:</label>
+                    <input  type="text" th:field="*{estado}" class="form-control" name="estado" required>
+                </div>
+                <div class="mb-3">
+                    <label for="state" class="form-label">Código Postal:</label>
+                    <input  type="text" th:field="*{codigo_postal}" class="form-control" name="codigo_postal" required>
+                </div>
+                <div class="text-center">
+                	<button class="btn btn-primary">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Rogelio Beltran Alvarado. Todos los derechos reservados.</p>
+        </div>
+</footer>
+</html>

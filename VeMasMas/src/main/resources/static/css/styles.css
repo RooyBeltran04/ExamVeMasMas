@@ -1,0 +1,21 @@
+body {
+   background-color: black;
+    color: white;
+    margin: 0; 
+    padding: 0;
+}
+#miPanel {
+            height: 20vh;
+        }
+#misInstrucciiones {
+            height: 20vh;
+        }
+#misBotones {
+            height: 50vh;
+        }
+.footer {
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
